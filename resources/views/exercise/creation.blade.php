@@ -29,11 +29,11 @@
             <input id= "duration" type="text" name="duration" placeholder="temps en minutes" />
         </div>
         <div>
-            <label for="type">Type d'exercice</label>
-            <select id="type" name="type">
-                <option value="cardio">cardio</option>
-                <option value="musculaire">musculaire</option>
-                <option value="endurance">endurance</option>
+            <label for="category">Catégorie d'exercice</label>
+            <select id="category" name="category">
+                @foreach ($categories as $category)
+                    <option value="{{ $category->id }}">{{ $category->name }}</option>
+                @endforeach
 
             </select>
         </div>

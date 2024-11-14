@@ -16,14 +16,18 @@ class Exercise extends Model
         'name',
         'duration',
         'description',
-        'type',
         'weight',
         'distance',
-        'repetition'
+        'repetition',
+        'category_id',
     ];
 
     public function programs()
     {
         return $this->belongsToMany(Program::class);
+    }
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
     }
 }

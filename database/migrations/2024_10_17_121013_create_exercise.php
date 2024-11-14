@@ -14,12 +14,13 @@ return new class extends Migration
         Schema::create('exercises', function (Blueprint $table) {
             $table->id();
             $table->string('name', 30)->unique();
-            $table->string('type', 50)->nullable();
             $table->tinyInteger('duration')->nullable();
             $table->string('description', 1000)->nullable();
             $table->smallInteger('distance')->nullable();
             $table->smallInteger('weight')->nullable();
             $table->smallInteger('repetition')->nullable();
+            $table->bigInteger('category_id');
+            $table->foreign('category_id')->references('id')->on('categories');
         });
     }
 

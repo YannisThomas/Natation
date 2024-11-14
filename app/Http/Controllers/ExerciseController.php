@@ -5,13 +5,15 @@ namespace App\Http\Controllers;
 use App\Models\Exercise;
 use Illuminate\Http\Request;
 use App\Http\Requests\ExerciseRequest;
+use App\Models\Category;
 
 class ExerciseController extends Controller
 {
 
     public function showForm()
     {
-        return View('exercise/creation');
+        $categories = Category::all();
+        return View('exercise/creation', ['categories' => $categories]);
     }
 
     public function creationExo(ExerciseRequest $request)
@@ -24,7 +26,8 @@ class ExerciseController extends Controller
             'weight' => $request->weight,
             'duration' => $request->duration,
             'repetition' => $request->repetition,
-            'type' => $request->type
+            'category_id' => $request->category_id,
+
         ]);
 
         return redirect('/exercice/liste');

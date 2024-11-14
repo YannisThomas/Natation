@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Category;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -19,11 +20,11 @@ class ExerciseFactory extends Factory
         return [
             'name' => fake()->unique()->word(),
             'duration' => fake()->numberBetween(0, 100),
-            'type' => fake()->word(),
             'description' => fake()->text(),
             'distance' => fake()->numberBetween(0, 100),
             'weight' => fake()->numberBetween(0, 100),
             'repetition' => fake()->numberBetween(0, 100),
+            'category_id' => Category::query()->inRandomOrder()->first()->id,
         ];
     }
 }

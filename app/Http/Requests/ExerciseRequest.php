@@ -26,8 +26,8 @@ class ExerciseRequest extends FormRequest
             'description' => 'string|max:1000',
             'duration' => 'nullable|integer|min:0|max:100',
             'repetitions' => 'nullable|integer|min:0|max:100',
-            'series' => 'nullable|integer|min:0|max:100',
             'weight' => 'nullable|integer|min:0|max:100',
+            'category_id' => 'required|integer|min:0|max:100',
 
         ];
     }
