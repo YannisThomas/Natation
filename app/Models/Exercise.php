@@ -7,16 +7,23 @@ use Illuminate\Database\Eloquent\Model;
 
 class Exercise extends Model
 {
+
+
     use HasFactory;
     public $timestamps = false;
     protected $fillable =
-    ['name',
-    'duration',
-    'description',
-    'type',
-    'weight',
-    'distance',
-    'repetition'
+    [
+        'name',
+        'duration',
+        'description',
+        'type',
+        'weight',
+        'distance',
+        'repetition'
     ];
 
+    public function programs()
+    {
+        return $this->belongsToMany(Program::class);
+    }
 }

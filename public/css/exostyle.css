@@ -1,0 +1,38 @@
+.exercice-container {
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    margin-top: 50px;
+    column-count: 5;
+    column-gap: 20px;
+    margin-top: 50px;
+}
+
+.program-detail {
+    background-color: #007bff;
+    color: white;
+    padding: 20px;
+    border-radius: 8px;
+    width: 80%;
+    max-width: 600px;
+    margin: 10px 0;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease;
+}
+
+
+.program-info {
+    margin-bottom: 20px;
+}
+
+.nomprog {
+    color: #333;
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+.infoprog {
+    color: #333;
+    font-size: 2rem;
+    font-weight: bold;
+}

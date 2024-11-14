@@ -1,11 +1,18 @@
 <?php
 
+use App\Models\Exercise;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/exercice/create', [App\Http\Controllers\ExerciseController::class, 'showForm']);
+Route::get('/exercice/creation', [App\Http\Controllers\ExerciseController::class, 'showForm']);
 
-Route::post('/exercice/create', [App\Http\Controllers\ExerciseController::class, 'createExo']);
+Route::post('/exercice/creation', [App\Http\Controllers\ExerciseController::class, 'creationExo']);
+
+Route::get('/programmes/voir', [App\Http\Controllers\ProgramController::class, 'showPrograms']);
+
+Route::get('programme/voir/{id}', [App\Http\Controllers\ProgramController::class, 'showExercise'])->name('exercise.show');
+
+Route::get('/exercice/liste', [App\Http\Controllers\ExerciseController::class, 'listeExercice']);

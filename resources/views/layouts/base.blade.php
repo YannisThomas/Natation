@@ -5,6 +5,8 @@
 <head>
     <title> @yield('title', 'aquafit') </title>
     <link href="/css/style.css" rel="stylesheet">
+    <link href="/css/progstyle.css" rel="stylesheet">
+    <link href="/css/exostyle.css" rel="stylesheet">
 </head>
 
 <body>

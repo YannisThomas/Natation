@@ -11,12 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('program', function (Blueprint $table) {
+        Schema::create('programs', function (Blueprint $table) {
             $table->id();
-            $table->date('date_debut')->nullable();
-            $table->date('date_fin')->nullable();
-            $table->unsignedSmallInteger('userid');
-            $table->foreign('userid')->references('userid')->on('users');
+            $table->string('name', 30);
+            $table->date('start_date')->nullable();
+            $table->date('end_date')->nullable();
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->unsignedSmallInteger('user_id');
         });
     }
 
@@ -25,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('program');
+        Schema::dropIfExists('programs');
     }
 };

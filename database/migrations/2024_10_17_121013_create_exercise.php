@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('exercise', function (Blueprint $table) {
+        Schema::create('exercises', function (Blueprint $table) {
             $table->id();
             $table->string('name', 30)->unique();
             $table->string('type', 50)->nullable();
@@ -20,7 +20,6 @@ return new class extends Migration
             $table->smallInteger('distance')->nullable();
             $table->smallInteger('weight')->nullable();
             $table->smallInteger('repetition')->nullable();
-
         });
     }
 
@@ -29,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('exercise');
+        Schema::dropIfExists('exercises');
     }
 };

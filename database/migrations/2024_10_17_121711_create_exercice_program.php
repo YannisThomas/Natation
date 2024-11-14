@@ -11,12 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('contains', function (Blueprint $table) {
-            $table->string('location_id', 50);
-            $table->unsignedSmallInteger('id');
-            $table->primary(['location_id', 'id']);
-            $table->foreign('location_id')->references('location_id')->on('locations');
-            $table->foreign('id')->references('id')->on('programs');
+        Schema::create('exercise_program', function (Blueprint $table) {
+            $table->unsignedBigInteger('exercise_id');
+            $table->unsignedBigInteger('program_id');
+            $table->primary(['exercise_id', 'program_id']);
+            $table->foreign('exercise_id')->references('id')->on('exercises');
+            $table->foreign('program_id')->references('id')->on('programs');
         });
     }
 
