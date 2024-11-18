@@ -10,7 +10,7 @@
         @foreach ($programs->exercises as $exercise)
             <div class="program-detail">
                 <p class="program-info"><strong>Nom :</strong> {{ $exercise->name }}</p>
-                <p class="program-info"><strong>Type :</strong> {{ $exercise->type }}</p>
+                <p class="program-info"><strong>Categorie :</strong> {{ $exercise->category_id }}</p>
                 <p class="program-info"><strong>Description :</strong> {{ $exercise->description }}</p>
                 <p class="program-info"><strong>Durée :</strong> {{ $exercise->duration }} minutes</p>
                 <p class="program-info"><strong>Répétition :</strong> {{ $exercise->repetition }}</p>

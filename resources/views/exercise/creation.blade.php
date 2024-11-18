@@ -29,8 +29,8 @@
             <input id= "duration" type="text" name="duration" placeholder="temps en minutes" />
         </div>
         <div>
-            <label for="category">Catégorie d'exercice</label>
-            <select id="category" name="category">
+            <label for="category_id">Catégorie d'exercice</label>
+            <select id="category_id" name="category_id">
                 @foreach ($categories as $category)
                     <option value="{{ $category->id }}">{{ $category->name }}</option>
                 @endforeach

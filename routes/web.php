@@ -13,6 +13,10 @@ Route::post('/exercice/creation', [App\Http\Controllers\ExerciseController::clas
 
 Route::get('/programmes/voir', [App\Http\Controllers\ProgramController::class, 'showPrograms']);
 
-Route::get('programme/voir/{id}', [App\Http\Controllers\ProgramController::class, 'showExercise'])->name('exercise.show');
+Route::get('programmes/voir/{id}', [App\Http\Controllers\ProgramController::class, 'showExercise'])->name('exercise.show');
 
 Route::get('/exercice/liste', [App\Http\Controllers\ExerciseController::class, 'listeExercice']);
+
+Route::get('/phpinfo', function () {
+    phpinfo();
+});

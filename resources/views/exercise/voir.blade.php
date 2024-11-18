@@ -6,7 +6,7 @@
     @foreach ($exercises as $exercise)
         <div class="exercice-container">
             <p> Nom : {{ $exercise->name }}<br></p>
-            <p> Durée : {{ $exercise->duration }}</p>
+            <p> Durée : {{ $exercise->duration }} minutes</p>
             <p> Type : {{ $exercise->type }}</p>
             <p> Distance : {{ $exercise->distance }}</p>
             <p> Poids : {{ $exercise->weight }}</p>
