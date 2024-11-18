@@ -1,4 +1,6 @@
 <header class="header">
-    <img src="#" alt="logo" />
-    <span><a href="login"> Se connecter</a><a href="#"> Inscription</a> </span>
+    <img src="{{ asset('images/logo.svg') }}" alt="logo" class="logo">
+    <span><a href="/login" class="header-button"> Se connecter</a><a href="/register" class="header-button">
+            Inscription</a>
+    </span>
 </header>

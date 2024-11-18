@@ -20,3 +20,9 @@ Route::get('/exercice/liste', [App\Http\Controllers\ExerciseController::class, '
 Route::get('/phpinfo', function () {
     phpinfo();
 });
+Route::get('/login', function () {
+    return view('login');
+});
+Route::get('/register', function () {
+    return view('register');
+});
