@@ -20,9 +20,13 @@ Route::get('/exercice/liste', [App\Http\Controllers\ExerciseController::class, '
 Route::get('/phpinfo', function () {
     phpinfo();
 });
-Route::get('/login', function () {
-    return view('login');
+Route::get('/connexion', function () {
+    return view('connexion');
 });
-Route::get('/register', function () {
-    return view('register');
+Route::get('/inscription', function () {
+    return view('inscription');
+});
+
+Route::get('/acceuil', function () {
+    return view('welcome');
 });
