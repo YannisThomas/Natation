@@ -1,32 +1,20 @@
 <?php
 
-use App\Models\Exercise;
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/exercice/creation', [App\Http\Controllers\ExerciseController::class, 'showForm']);
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::post('/exercice/creation', [App\Http\Controllers\ExerciseController::class, 'creationExo']);
-
-Route::get('/programmes/voir', [App\Http\Controllers\ProgramController::class, 'showPrograms']);
-
-Route::get('programmes/voir/{id}', [App\Http\Controllers\ProgramController::class, 'showExercise'])->name('exercise.show');
-
-Route::get('/exercice/liste', [App\Http\Controllers\ExerciseController::class, 'listeExercice']);
-
-Route::get('/phpinfo', function () {
-    phpinfo();
-});
-Route::get('/connexion', function () {
-    return view('connexion');
-});
-Route::get('/inscription', function () {
-    return view('inscription');
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::get('/acceuil', function () {
-    return view('welcome');
-});
+require __DIR__.'/auth.php';
