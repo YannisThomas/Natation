@@ -30,7 +30,6 @@ class CreateExercise extends Command
         try {
             $exercise = Exercise::create([
                 'name' => 'Etirement',
-
                 'category_id' => 1,
 
             ]);

@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Program;
 use Illuminate\Http\Request;
+use App\Models\Exercise;
+
 
 class ProgramController extends Controller
 {
@@ -20,4 +22,5 @@ class ProgramController extends Controller
         $exercises = $programs->exercises;
         return view('program.voirprog', ['exercises' => $exercises, 'programs' => $programs]);
     }
+
 }

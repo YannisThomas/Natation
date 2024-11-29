@@ -6,10 +6,10 @@ use App\Models\Exercise;
 use Illuminate\Http\Request;
 use App\Http\Requests\ExerciseRequest;
 use App\Models\Category;
+use App\Models\Program;
 
 class ExerciseController extends Controller
 {
-
     public function showForm()
     {
         $categories = Category::all();

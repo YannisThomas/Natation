@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('exercise_program', function (Blueprint $table) {
             $table->unsignedBigInteger('exercise_id');
             $table->unsignedBigInteger('program_id');
+            $table->date('finished_at')->nullable()->default(null);
             $table->primary(['exercise_id', 'program_id']);
             $table->foreign('exercise_id')->references('id')->on('exercises');
             $table->foreign('program_id')->references('id')->on('programs');

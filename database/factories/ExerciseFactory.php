@@ -25,6 +25,7 @@ class ExerciseFactory extends Factory
             'weight' => fake()->numberBetween(0, 100),
             'repetition' => fake()->numberBetween(0, 100),
             'category_id' => Category::query()->inRandomOrder()->first()->id,
+            
         ];
     }
 }
