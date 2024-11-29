@@ -1,16 +1,20 @@
 .exercice-container {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    break-inside: avoid;
     align-items: left;
     margin-top: 50px;
     column-count: 5;
-    column-gap: 20px;
+    width: 50%;
+
+    column-gap: 5%;
     margin-top: 50px;
+    margin-left: 5%;
 }
 
 .program-detail {
-    background-color: #007bff;
-    color: white;
+    background-color: #82a8d0;
+
     padding: 20px;
     border-radius: 8px;
     width: 80%;
@@ -20,19 +24,48 @@
     transition: transform 0.3s ease;
 }
 
+.program-detail {
+
+    transform: scale(1.05);
+
+    background-color: #82a8d0;
+    padding: 20px;
+
+}
 
 .program-info {
+    background-color: #82a8d0;
     margin-bottom: 20px;
+
+}
+
+.program-info strong {
+    font-weight: bold;
+    background-color: #82a8d0;
 }
 
 .nomprog {
+
     color: #333;
     font-size: 2rem;
     font-weight: bold;
 }
 
 .infoprog {
+
     color: #333;
     font-size: 2rem;
     font-weight: bold;
+}
+
+.retour-button {
+    background-color: #82a8d0;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    justify-items: center;
+
 }
