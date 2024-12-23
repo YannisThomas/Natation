@@ -8,6 +8,8 @@
     <link href="/css/progstyle.css" rel="stylesheet">
     <link href="/css/exostyle.css" rel="stylesheet">
     <link href="/css/login_register.css" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    @vite('resources/css/app.css')
 </head>
 
 <body>

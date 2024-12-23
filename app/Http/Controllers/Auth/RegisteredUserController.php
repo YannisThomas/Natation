@@ -13,6 +13,7 @@ use Illuminate\Validation\Rules;
 use Illuminate\View\View;
 use App\Models\Role;
 
+
 class RegisteredUserController extends Controller
 {
     /**
@@ -31,19 +32,21 @@ class RegisteredUserController extends Controller
      */
     public function store(Request $request): RedirectResponse
     {
-        $request->validate([
-            'lastname' => ['required', 'string', 'max:255'],
-            'firstname' => ['required', 'string', 'max:255'],
-            'role_id' => ['required', 'integer', 'exists:roles,id'],
-            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:' . User::class],
-            'password' => ['required', 'confirmed', Rules\Password::defaults()],
-        ]);
+        
+        $file = $request->file('photo');
 
+        if (is_null($file)) {
+            $path = 'uploads/default_user.jpeg';
+        } else {
+            $path = $file->store('uploads', 'public');
+        }
         $user = User::create([
             'lastname' => $request->lastname,
             'firstname' => $request->firstname,
             'role_id' => $request->role_id,
             'email' => $request->email,
+            'photo' => $path,
+
             'password' => Hash::make($request->password),
         ]);
 

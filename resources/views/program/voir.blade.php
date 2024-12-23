@@ -13,7 +13,7 @@
             <div class="program-item">
                 Nom : <a href="{{ route('exercise.show', $program->id) }}" class="program-name">{{ $program->name }}</a><br>
 
-                <a href="{{-- route('program.create') --}}" class="program-button-delete"></a>
+                <a href="{{ route('program.create') }}" class="program-button-delete"></a>
 
             </div>
         @endforeach

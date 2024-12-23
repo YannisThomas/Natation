@@ -42,9 +42,12 @@ Route::get('/acceuil', function () {
 });
 
 
+Route::post('/programme/creation', [App\Http\Controllers\ProgramController::class, 'createProgram']);
+Route::get('/programme/creation', [App\Http\Controllers\ProgramController::class, 'showForm']);
 
-
-
+Route::get('/test', function () {
+    return view('test');
+});
 
 require __DIR__ . '/auth.php';
 require __DIR__ . '/api.php';
