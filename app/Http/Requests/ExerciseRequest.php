@@ -3,6 +3,9 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Http\Exceptions\HttpResponseException;
+use Illuminate\Contracts\Validation\Validator;
+use Symfony\Component\HttpFoundation\Response;
 
 class ExerciseRequest extends FormRequest
 {
@@ -30,5 +33,12 @@ class ExerciseRequest extends FormRequest
             'category_id' => 'required|integer|min:0|max:100',
 
         ];
+    }
+    protected function failedValidation(Validator $validator)
+    {
+        throw new HttpResponseException(response()->json([
+            'errors' => $validator->errors(),
+            'status' => true
+        ], Response::HTTP_UNPROCESSABLE_ENTITY));
     }
 }
