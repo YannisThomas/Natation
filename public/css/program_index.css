@@ -1,0 +1,93 @@
+/* Conteneur principal */
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Titre principal */
+.container h2 {
+    text-align: center;
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+/* Message lorsqu'aucun programme n'est disponible */
+.container p {
+    text-align: center;
+    font-size: 18px;
+    color: #666;
+}
+
+/* Liste des programmes */
+.container ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.container ul li {
+    background-color: #fff;
+    margin-bottom: 15px;
+    padding: 15px;
+    border-radius: 6px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Nom du programme */
+.container ul li strong {
+    font-size: 18px;
+    color: #333;
+}
+
+/* Description et dates du programme */
+.container ul li span {
+    display: block;
+    margin-top: 5px;
+    font-size: 14px;
+    color: #555;
+}
+
+/* Boutons Modifier et Supprimer */
+.container ul li .btn {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 8px 12px;
+    font-size: 14px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    text-decoration: none;
+    color: #fff;
+}
+
+.container ul li .btn-warning {
+    background-color: #ffc107;
+    margin-right: 10px;
+}
+
+.container ul li .btn-danger {
+    background-color: #dc3545;
+}
+
+/* Effet au survol des boutons */
+.container ul li .btn:hover {
+    opacity: 0.9;
+}
+
+.btn-success {
+    padding: 10px 20px;
+    background-color: #28a745;
+    color: white;
+    font-weight: bold;
+    text-decoration: none;
+    border-radius: 8px;
+    transition: background-color 0.3s ease;
+}
+
+.btn-success:hover {
+    background-color: #218838;
+}

@@ -1,0 +1,68 @@
+/* Conteneur principal */
+.sport-container {
+    max-width: 600px;
+    margin: 40px auto;
+    padding: 30px;
+    background-color: #ffffff;
+    border-radius: 16px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Titre */
+h2 {
+    text-align: center;
+    font-size: 28px;
+    color: #333;
+    margin-bottom: 30px;
+}
+
+/* Message vide */
+.p_progVide {
+    text-align: center;
+    color: #888;
+    font-style: italic;
+    font-size: 16px;
+}
+
+/* Liste */
+ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+li {
+    margin-bottom: 20px;
+}
+
+/* Bouton pour chaque sportif */
+.sport-button {
+    display: block;
+    width: 100%;
+    background-color: #007BFF;
+    color: white;
+    font-weight: bold;
+    text-align: center;
+    border-radius: 12px;
+    text-decoration: none;
+    font-size: 18px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.sport-button:hover {
+    background-color: #0056b3;
+    transform: scale(1.03);
+}
+
+/* Responsive */
+@media screen and (max-width: 600px) {
+    .sport-button {
+        font-size: 16px;
+        padding: 12px;
+    }
+
+    .sport-container {
+        padding: 20px;
+    }
+}

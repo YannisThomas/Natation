@@ -1,0 +1,158 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Lery OpenApi Mobility Education with Dashcam Documentation",
+        "contact": {
+            "url": "https://lery.cc/contact",
+            "email": "admin@lery.cc"
+        },
+        "license": {
+            "name": "copyright Lery Technologies",
+            "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
+        },
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "http://localhost:8000",
+            "description": "development API endpoints"
+        },
+        {
+            "url": "http://med.lery.cc",
+            "description": "integration API endpoints"
+        }
+    ],
+    "paths": {
+        "/api/user": {
+            "get": {
+                "tags": [
+                    "General"
+                ],
+                "summary": "Authentication test",
+                "description": "Allow API user to test there authentication through API Token. There is no specific abilities required to access this endpoint. Every user should be allowed to get a 200 response with a valid API Token",
+                "operationId": "userTest",
+                "responses": {
+                    "200": {
+                        "description": "User is successfully authenticated"
+                    },
+                    "401": {
+                        "$ref": "#/components/responses/FailedAuthentication"
+                    }
+                },
+                "security": [
+                    {
+                        "api_token": []
+                    }
+                ]
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "BaseModel": {
+                "title": "BaseModel",
+                "description": "Should not be used and hidden but mandatory for documentation",
+                "properties": {
+                    "created_at": {
+                        "description": "Initial creation timestamp",
+                        "type": "string",
+                        "format": "date-time",
+                        "readOnly": true
+                    },
+                    "updated_at": {
+                        "description": "Last update timestamp",
+                        "type": "string",
+                        "format": "date-time",
+                        "readOnly": true
+                    }
+                },
+                "type": "object"
+            },
+            "DashcamResponse": {
+                "title": "DashcamResponse",
+                "properties": {
+                    "message": {
+                        "type": "string",
+                        "example": "dashcam successfully registered"
+                    },
+                    "data": {
+                        "properties": {
+                            "token": {
+                                "type": "string",
+                                "example": "1|gKoGuAJOqCWDxVQqQwUFJUvlSrzfMoed4NoU2abk"
+                            }
+                        },
+                        "type": "object"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "responses": {
+            "FailedAuthentication": {
+                "description": "Failed Authentication",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "properties": {
+                                "message": {
+                                    "description": "Error Message",
+                                    "type": "string",
+                                    "example": "Authentication failed"
+                                },
+                                "error": {
+                                    "description": "may be more informations about errors",
+                                    "type": "string",
+                                    "example": "No authentication token provided"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            },
+            "FailedValidation": {
+                "description": "Unprocessable entity. The information sent does not allow server to provide a response",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "properties": {
+                                "message": {
+                                    "description": "What went wrong",
+                                    "type": "string",
+                                    "example": "Incorrect data sent"
+                                },
+                                "errors": {
+                                    "description": "Validation errors.",
+                                    "type": "object",
+                                    "example": {
+                                        "messageId": [
+                                            "The message ID field is required."
+                                        ],
+                                        "mail": [
+                                            "Invalid mail format"
+                                        ]
+                                    }
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            }
+        },
+        "securitySchemes": {
+            "api_token": {
+                "type": "apiKey",
+                "name": "Authorization",
+                "in": "header"
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "General",
+            "description": "General"
+        }
+    ]
+}

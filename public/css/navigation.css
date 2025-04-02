@@ -1,0 +1,50 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #f4f4f4;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.logo {
+    max-height: 35px;
+    max-width: auto;
+}
+
+.header a {
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: bold;
+    padding: 10px 20px;
+    border-radius: 20px;
+    transition: all 0.3s ease;
+    margin-left: 10px;
+}
+
+.btnLogin {
+    color: #ffffff;
+    background-color: #007BFF;
+}
+
+.btnLogin:hover {
+    background-color: #0056b3;
+    box-shadow: 0 4px 8px rgba(192, 12, 12, 0.2);
+    transform: scale(1.05);
+}
+
+.btnRegister {
+    color: #ffffff;
+    background-color: #007BFF;
+}
+
+.btnRegister:hover {
+    background-color: #0056b3;
+    box-shadow: 0 4px 8px rgba(192, 12, 12, 0.2);
+    transform: scale(1.05);
+}
+
+* {
+    margin: 0;
+}

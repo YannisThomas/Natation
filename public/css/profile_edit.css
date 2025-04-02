@@ -1,0 +1,68 @@
+.profile-container {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 30px;
+    background-color: rgba(255, 255, 255, 0.95);
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.profile-container h2 {
+    font-size: 26px;
+    margin-bottom: 30px;
+    text-align: center;
+    color: #007BFF;
+}
+
+.profile-card {
+    background-color: #f9f9f9;
+    padding: 25px;
+    border-radius: 10px;
+    margin-bottom: 30px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+/* Style des labels et champs */
+label {
+    font-weight: bold;
+    color: #333;
+}
+
+input, textarea {
+    width: 100%;
+    padding: 10px;
+    margin-top: 6px;
+    margin-bottom: 16px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    box-sizing: border-box;
+}
+
+/* Boutons */
+button,
+button[type="submit"],
+.primary-button {
+    background-color: #007BFF;
+    color: white;
+    padding: 10px 18px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+button:hover,
+.primary-button:hover {
+    background-color: #0056b3;
+}
+
+/* Succès / message info */
+.text-green-600 {
+    color: #28a745;
+}
+
+.text-sm {
+    font-size: 14px;
+}

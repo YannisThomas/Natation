@@ -1,0 +1,144 @@
+/* Conteneur principal pour l'ensemble de la page */
+.sportif-detail-container {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 30px;
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Titre principal */
+.sportif-detail-container h2 {
+    text-align: center;
+    font-size: 26px;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+/* Détails du sportif */
+.sportif-info {
+    margin-bottom: 30px;
+}
+
+.sportif-info p {
+    font-size: 16px;
+    color: #555;
+    line-height: 1.6;
+}
+
+.sportif-info strong {
+    color: #333;
+}
+
+/* Séparation des sections */
+hr {
+    margin: 20px 0;
+    border: 1px solid #eee;
+}
+
+/* Section des boutons */
+.buttons-container {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+/* Boutons */
+.btn {
+    padding: 10px 20px;
+    font-size: 14px;
+    font-weight: bold;
+    border-radius: 8px;
+    text-decoration: none;
+    text-align: center;
+    display: inline-block;
+    transition: all 0.3s;
+}
+
+.btn-success {
+    background-color: #28a745;
+    color: #fff;
+}
+
+.btn-info {
+    background-color: #17a2b8;
+    color: #fff;
+}
+
+.btn-warning {
+    background-color: #ffc107;
+    color: #fff;
+}
+
+.btn-danger {
+    background-color: #dc3545;
+    color: #fff;
+}
+
+.btn-primary {
+    background-color: #007bff;
+    color: #fff;
+}
+
+.btn:hover {
+    opacity: 0.8;
+    cursor: pointer;
+}
+
+/* Liste des programmes */
+.program-list {
+    list-style: none;
+    padding: 0;
+}
+
+.program-item {
+    background-color: #f9f9f9;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+}
+
+.program-item:hover {
+    background-color: #f1f1f1;
+}
+
+.program-item a {
+    text-decoration: none;
+    margin-right: 10px;
+}
+
+/* Retourner à la liste */
+.btn-primary {
+    display: block;
+    text-align: center;
+    margin-top: 20px;
+    font-size: 16px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .sportif-detail-container {
+        width: 90%;
+        padding: 20px;
+    }
+
+    .sportif-detail-container h2 {
+        font-size: 22px;
+    }
+
+    .sportif-info p {
+        font-size: 14px;
+    }
+
+    .program-item {
+        font-size: 14px;
+    }
+
+    .btn {
+        padding: 8px 16px;
+        font-size: 12px;
+    }
+}

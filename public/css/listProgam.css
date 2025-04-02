@@ -1,0 +1,39 @@
+/* Style général de la liste des programmes */
+.program-list-container {
+    max-width: 900px;
+    margin: 40px auto;
+    background-color: white;
+    padding: 30px;
+    border-radius: 16px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.program-list-container h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.program-list-container ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.program-list-container li {
+    background-color: #f4f4f4;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    font-size: 16px;
+}
+
+.program-list-container li:hover {
+    background-color: #e9ecef;
+}
+
+.program-list-container p {
+    text-align: center;
+    font-size: 18px;
+    color: #888;
+}

@@ -1,0 +1,84 @@
+.exercise-form-container {
+    max-width: 700px;
+    margin: 40px auto;
+    padding: 30px;
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.exercise-form-container h2 {
+    text-align: center;
+    font-size: 26px;
+    color: #333;
+    margin-bottom: 30px;
+}
+
+.exercise-form-container label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 6px;
+    margin-top: 20px;
+    color: #444;
+}
+
+.exercise-form-container input[type="text"],
+.exercise-form-container input[type="date"],
+.exercise-form-container textarea {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 15px;
+    resize: vertical;
+}
+
+.exercise-form-container textarea {
+    min-height: 120px;
+}
+
+.btn-submit {
+    margin-top: 30px;
+    background-color: #28a745;
+    color: white;
+    padding: 12px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    width: 100%;
+    transition: background-color 0.3s ease;
+}
+
+.btn-submit:hover {
+    background-color: #218838;
+}
+
+.btn-secondary {
+    display: inline-block;
+    background-color: #6c757d;
+    color: white;
+    padding: 10px 18px;
+    font-size: 14px;
+    border: none;
+    border-radius: 6px;
+    text-align: center;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+.btn-secondary:hover {
+    background-color: #5a6268;
+}
+
+@media (max-width: 600px) {
+    .exercise-form-container {
+        padding: 20px;
+    }
+
+    .btn-submit {
+        font-size: 14px;
+        padding: 10px;
+    }
+}

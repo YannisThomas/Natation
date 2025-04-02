@@ -1,0 +1,112 @@
+/* Conteneur principal du formulaire (bloc épuré et centré) */
+.exercise-form-container {
+    max-width: 600px;
+    margin: 40px auto;
+    background-color: #f9f9f9;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Titre du formulaire */
+.exercise-form-container h2 {
+    text-align: center;
+    font-size: 24px;
+    margin-bottom: 30px;
+    color: #333;
+    font-weight: 600;
+}
+
+/* Labels des champs du formulaire */
+form label {
+    font-size: 16px;
+    font-weight: 500;
+    color: #444;
+    margin-top: 15px;
+    display: block;
+}
+
+/* Champ de saisie pour les inputs et textarea */
+form input,
+form textarea {
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    margin-top: 8px;
+    background-color: #fff;
+    transition: border-color 0.3s ease;
+}
+
+/* Effet de focus sur les champs de saisie */
+form input:focus,
+form textarea:focus {
+    border-color: #007bff;
+    outline: none;
+}
+
+/* Bouton de soumission */
+form button {
+    width: 100%;
+    padding: 14px;
+    background-color: #007BFF;
+    color: white;
+    font-weight: bold;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.2s ease;
+    font-size: 16px;
+    margin-top: 20px;
+}
+
+form button:hover {
+    background-color: #0056b3;
+    transform: scale(1.05);
+}
+
+/* Style pour le message de succès */
+.success {
+    background-color: #d4edda;
+    color: #155724;
+    padding: 12px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+/* Style pour les erreurs de validation */
+.error {
+    color: #dc3545;
+    font-size: 14px;
+    margin-top: 8px;
+    font-weight: 500;
+}
+
+/* Style de l'input de texte (textarea) */
+form textarea {
+    height: 120px;  /* Donne plus de hauteur au champ de texte */
+    resize: vertical; /* Permet à l'utilisateur de redimensionner verticalement */
+}
+
+/* Espacement entre les éléments */
+form > * {
+    margin-bottom: 20px;
+}
+
+/* Style global pour les messages d'alerte */
+.alert {
+    font-size: 14px;
+    text-align: center;
+    margin-top: 20px;
+}
+
+/* Style des éléments en général */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+   
+    color: #333;
+}

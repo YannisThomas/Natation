@@ -1,0 +1,101 @@
+html, body {
+    height: 100%; /* S'assurer que le body et html couvrent toute la hauteur */
+    margin: 0; /* Retirer les marges par défaut */
+}
+
+html {
+    background-image: url(/image/background.jpg); /* Définir l'image de fond */
+    background-size: cover; /* L'image couvre toute la surface sans déformation */
+    background-position: center center; /* Centrer l'image sur la page */
+    background-attachment: fixed; /* Fixer l'image en arrière-plan */
+    background-repeat: no-repeat; /* Empêcher la répétition de l'image */
+}
+
+main {
+    padding-top: 60px;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: rgba(244, 244, 244, 0.8); /* Ajouter de la transparence au fond */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.logo {
+    max-height: 35px;
+    max-width: auto;
+}
+
+.header a {
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: bold;
+    padding: 10px 20px;
+    border-radius: 20px;
+    transition: all 0.3s ease;
+    margin-left: 10px;
+}
+
+.btnLogin {
+    color: #ffffff;
+    background-color: #007BFF;
+}
+
+.btnLogin:hover {
+    background-color: #0056b3;
+    box-shadow: 0 4px 8px rgba(192, 12, 12, 0.2);
+    transform: scale(1.05);
+}
+
+.btnRegister {
+    color: #ffffff;
+    background-color: #007BFF;
+}
+
+.btnRegister:hover {
+    background-color: #0056b3;
+    box-shadow: 0 4px 8px rgba(192, 12, 12, 0.2);
+    transform: scale(1.05);
+}
+
+.btnLogin {
+    align-items: left;
+}
+
+* {
+    margin: 0;
+}
+
+.main_content {
+    max-width: 800px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #f4f4f4;
+    border: 2px solid #007BFF;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+}
+
+.footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(244, 244, 244, 0.8); /* Ajouter de la transparence au fond */
+    padding: 10px;
+    z-index: 1000;
+}
+
+p {
+    text-align: center;
+}

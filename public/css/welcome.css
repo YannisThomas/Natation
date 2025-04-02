@@ -1,0 +1,79 @@
+/* 🌊 Image de fond de la page d'accueil */
+.welcome-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    /* Centre tout verticalement */
+    align-items: center;
+    min-height: 40vh;
+    /* Ajusté pour ne pas toucher le header */
+    text-align: center;
+    padding-top: 5px;
+    /* Ajout d’espace sous le header */
+}
+
+/* 🏅 Titre principal */
+.welcome-container h1 {
+    color: #ffffff;
+    font-size: 3rem;
+    font-weight: bold;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+    margin-bottom: 20px;
+    /* Espace entre le titre et le contenu */
+}
+
+/* 📌 Bloc blanc avec informations */
+.main_content {
+    max-width: 800px;
+    margin: 20px auto;
+    /* Ajusté pour mieux positionner le bloc */
+    padding: 25px;
+    background-color: rgba(255, 255, 255, 0.95);
+    /* Légère transparence */
+    border: 2px solid #007BFF;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    line-height: 1.6;
+}
+
+/* 🌊 Titre dans le bloc blanc */
+.main_content h1 {
+    font-size: 2rem;
+    color: #0056b3;
+    margin-bottom: 15px;
+}
+
+/* 📝 Paragraphe */
+.main_content p {
+    font-size: 1.2rem;
+    color: #333;
+    text-align: center;
+    /* Assurer que le texte est bien centré */
+    max-width: 90%;
+    /* Empêcher le texte de s’étirer trop */
+    margin: 0 auto;
+    /* Centrer le paragraphe */
+}
+
+/* 🔥 Responsive Design */
+@media (max-width: 768px) {
+    .welcome-container {
+        min-height: 50vh;
+        /* Ajuste la hauteur sur mobile */
+        padding-top: 50px;
+    }
+
+    .welcome-container h1 {
+        font-size: 2.5rem;
+    }
+
+    .main_content {
+        max-width: 90%;
+        padding: 15px;
+    }
+
+    .main_content p {
+        font-size: 1rem;
+    }
+}
