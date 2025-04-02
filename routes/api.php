@@ -12,6 +12,6 @@ Route::get('/extest', [App\http\Controllers\ExerciseController::class, 'showForm
 
 //withoutMiddleware([\illuminate\fondation\Htpp\Middleware\VerifyCsrToken::class]);
 
-//Route::middleware('auth:sanctum')->group(function () {
-Route::post('/post-exercice', [App\Http\Controllers\Api\ExerciseApiController::class, "postExercise"]);
-//});
+Route::middleware('auth:sanctum')->group(function () {
+    Route::post('/post-exercice', [App\Http\Controllers\Api\ExerciseApiController::class, "postExercise"]);
+});
