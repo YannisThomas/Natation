@@ -2,10 +2,7 @@
 
 namespace Tests\Feature;
 
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
-
 
 class ProgramVoirprogTest extends TestCase
 {
@@ -16,8 +13,8 @@ class ProgramVoirprogTest extends TestCase
     {
         $program = \App\Models\Program::factory()->create();
         echo 'prog id'.$program->id;
-        echo '-url:'.'/programmes/voir/'. $program->id;
-        $response = $this->get('/programmes/voir/' . $program->id);
+        echo '-url:'.'/programmes/voir/'.$program->id;
+        $response = $this->get('/programmes/voir/'.$program->id);
 
         $response->assertStatus(200);
     }

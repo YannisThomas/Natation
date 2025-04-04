@@ -5,16 +5,98 @@
             <div class="flex">
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
-                    <a href="{{ route('dashboard') }}">
+                    <a href="{{ route('home') }}">
                         <x-application-logo class="block h-9 w-auto fill-current text-gray-800 dark:text-gray-200" />
                     </a>
                 </div>
 
                 <!-- Navigation Links -->
-                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                        {{ __('Dashboard') }}
+                <div class="hidden space-x-3 sm:-my-px sm:ms-6 sm:flex">
+                    <x-nav-link :href="route('home')" :active="request()->routeIs('home')">
+                        {{ __('Accueil') }}
                     </x-nav-link>
+                    
+                    @if(Auth::check())
+                        <!-- Menu Exercices -->
+                        <x-nav-link :href="route('exercise.list')" :active="request()->routeIs('exercise.list')">
+                            {{ __('Exercices') }}
+                        </x-nav-link>
+                        
+                        <!-- Menu déroulant pour les Athlètes (visible pour coachs et admins) -->
+                        @if(Auth::user()->isCoach() || Auth::user()->isAdmin())
+                            <x-dropdown>
+                                <x-slot name="trigger">
+                                    <button class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 dark:text-gray-400 bg-white dark:bg-gray-800 hover:text-gray-700 dark:hover:text-gray-300 focus:outline-none transition ease-in-out duration-150">
+                                        <span>{{ __('Athlètes') }}</span>
+                                        <svg class="fill-current h-4 w-4 ml-1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                                            <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                                        </svg>
+                                    </button>
+                                </x-slot>
+                                <x-slot name="content">
+                                    <x-dropdown-link :href="route('program.athletes')" :active="request()->routeIs('program.athletes')">
+                                        {{ __('Mes Athlètes') }}
+                                    </x-dropdown-link>
+                                    <x-dropdown-link :href="route('athlete.create')" :active="request()->routeIs('athlete.create')">
+                                        {{ __('Ajouter un Athlète') }}
+                                    </x-dropdown-link>
+                                </x-slot>
+                            </x-dropdown>
+                        @endif
+                        
+                        <!-- Menu déroulant pour les Programmes -->
+                        <x-dropdown>
+                            <x-slot name="trigger">
+                                <button class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 dark:text-gray-400 bg-white dark:bg-gray-800 hover:text-gray-700 dark:hover:text-gray-300 focus:outline-none transition ease-in-out duration-150">
+                                    <span>{{ __('Programmes') }}</span>
+                                    <svg class="fill-current h-4 w-4 ml-1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                                    </svg>
+                                </button>
+                            </x-slot>
+                            <x-slot name="content">
+                                @if(Auth::user()->isAdmin())
+                                    <x-dropdown-link :href="route('program.list')" :active="request()->routeIs('program.list')">
+                                        {{ __('Tous les Programmes') }}
+                                    </x-dropdown-link>
+                                @endif
+                                
+                                @if(Auth::user()->isCoach())
+                                    <x-dropdown-link :href="route('program.coach')" :active="request()->routeIs('program.coach')">
+                                        {{ __('Mes Programmes') }}
+                                    </x-dropdown-link>
+                                    <x-dropdown-link :href="route('program.create')" :active="request()->routeIs('program.create')">
+                                        {{ __('Créer Programme') }}
+                                    </x-dropdown-link>
+                                @endif
+                                
+                                @if(Auth::user()->isAthlete())
+                                    <x-dropdown-link :href="route('program.athlete')" :active="request()->routeIs('program.athlete')">
+                                        {{ __('Mes Entraînements') }}
+                                    </x-dropdown-link>
+                                @endif
+                            </x-slot>
+                        </x-dropdown>
+                        
+                        @if(Auth::user()->isAdmin())
+                            <!-- Menu Administration (pour admin uniquement) -->
+                            <x-dropdown>
+                                <x-slot name="trigger">
+                                    <button class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 dark:text-gray-400 bg-white dark:bg-gray-800 hover:text-gray-700 dark:hover:text-gray-300 focus:outline-none transition ease-in-out duration-150">
+                                        <span>{{ __('Administration') }}</span>
+                                        <svg class="fill-current h-4 w-4 ml-1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                                            <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                                        </svg>
+                                    </button>
+                                </x-slot>
+                                <x-slot name="content">
+                                    <x-dropdown-link :href="route('exercise.create.form')" :active="request()->routeIs('exercise.create.form')">
+                                        {{ __('Créer Exercice') }}
+                                    </x-dropdown-link>
+                                </x-slot>
+                            </x-dropdown>
+                        @endif
+                    @endif
                 </div>
             </div>
 
@@ -67,9 +149,67 @@
     <!-- Responsive Navigation Menu -->
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
         <div class="pt-2 pb-3 space-y-1">
-            <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                {{ __('Dashboard') }}
+            <x-responsive-nav-link :href="route('home')" :active="request()->routeIs('home')">
+                {{ __('Accueil') }}
             </x-responsive-nav-link>
+            
+            @if(Auth::check())
+                <!-- Menu Exercices -->
+                <x-responsive-nav-link :href="route('exercise.list')" :active="request()->routeIs('exercise.list')">
+                    {{ __('Exercices') }}
+                </x-responsive-nav-link>
+                
+                @if(Auth::user()->isCoach() || Auth::user()->isAdmin())
+                    <!-- Section Athlètes (Coach/Admin) -->
+                    <div class="mt-3 pt-2 border-t border-gray-200 dark:border-gray-600">
+                        <div class="px-4 font-medium text-base text-gray-800 dark:text-gray-200">Athlètes</div>
+                    </div>
+                    
+                    <x-responsive-nav-link :href="route('program.athletes')" :active="request()->routeIs('program.athletes')">
+                        {{ __('Mes Athlètes') }}
+                    </x-responsive-nav-link>
+                    <x-responsive-nav-link :href="route('athlete.create')" :active="request()->routeIs('athlete.create')">
+                        {{ __('Ajouter un Athlète') }}
+                    </x-responsive-nav-link>
+                @endif
+                
+                <!-- Section Programmes -->
+                <div class="mt-3 pt-2 border-t border-gray-200 dark:border-gray-600">
+                    <div class="px-4 font-medium text-base text-gray-800 dark:text-gray-200">Programmes</div>
+                </div>
+                
+                @if(Auth::user()->isAdmin())
+                    <x-responsive-nav-link :href="route('program.list')" :active="request()->routeIs('program.list')">
+                        {{ __('Tous les Programmes') }}
+                    </x-responsive-nav-link>
+                @endif
+                
+                @if(Auth::user()->isCoach())
+                    <x-responsive-nav-link :href="route('program.coach')" :active="request()->routeIs('program.coach')">
+                        {{ __('Mes Programmes') }}
+                    </x-responsive-nav-link>
+                    <x-responsive-nav-link :href="route('program.create')" :active="request()->routeIs('program.create')">
+                        {{ __('Créer Programme') }}
+                    </x-responsive-nav-link>
+                @endif
+                
+                @if(Auth::user()->isAthlete())
+                    <x-responsive-nav-link :href="route('program.athlete')" :active="request()->routeIs('program.athlete')">
+                        {{ __('Mes Entraînements') }}
+                    </x-responsive-nav-link>
+                @endif
+                
+                @if(Auth::user()->isAdmin())
+                    <!-- Section Administration -->
+                    <div class="mt-3 pt-2 border-t border-gray-200 dark:border-gray-600">
+                        <div class="px-4 font-medium text-base text-gray-800 dark:text-gray-200">Administration</div>
+                    </div>
+                    
+                    <x-responsive-nav-link :href="route('exercise.create.form')" :active="request()->routeIs('exercise.create.form')">
+                        {{ __('Créer Exercice') }}
+                    </x-responsive-nav-link>
+                @endif
+            @endif
         </div>
 
         <!-- Responsive Settings Options -->

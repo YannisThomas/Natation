@@ -2,8 +2,8 @@
 
 namespace App\Console\Commands;
 
-use Illuminate\Console\Command;
 use App\Models\Role;
+use Illuminate\Console\Command;
 use Illuminate\Console\View\Components\TwoColumnDetail;
 
 class CreateRole extends Command
@@ -40,13 +40,13 @@ class CreateRole extends Command
                     'name' => $role,
                 ]);
                 with(new TwoColumnDetail($this->getOutput()))->render(
-                    '<fg=yellow;options=bold>ACTION : </>' . $role->name,
+                    '<fg=yellow;options=bold>ACTION : </>'.$role->name,
                     '<fg=yellow;options=bold>ADDED</>'
                 );
             } catch (\Exception $exception) {
                 echo $exception->getMessage();
                 with(new TwoColumnDetail($this->getOutput()))->render(
-                    '<fg=yellow;options=bold>ACTION : </>' . "ECHEC",
+                    '<fg=yellow;options=bold>ACTION : </>'.'ECHEC',
                     '<fg=red;options=bold>FAILED</>'
                 );
             }

@@ -2,11 +2,11 @@
 
 namespace Tests\Unit;
 
-use Tests\TestCase;
+use App\Models\Category;
 use App\Models\Exercise;
 use App\Models\Program;
-use App\Models\Category;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Tests\TestCase;
 
 class ExerciseTest extends TestCase
 {
@@ -36,17 +36,14 @@ class ExerciseTest extends TestCase
         });
     }
 
-
     public function test_exercise_belongs_to_category()
     {
         $category = Category::factory()->create();
         $exercise = Exercise::factory()->create([
-            'category_id' => $category->id
+            'category_id' => $category->id,
         ]);
 
         $this->assertInstanceOf(Category::class, $exercise->category);
         $this->assertEquals($category->id, $exercise->category->id);
     }
 }
-
-

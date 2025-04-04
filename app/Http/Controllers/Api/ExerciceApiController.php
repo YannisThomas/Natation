@@ -17,10 +17,13 @@ class ExerciceApiController extends Controller
      *      security={
      *          {"api_key_security_example": {}}
      *      },
+     *
      *      @OA\RequestBody(
      *          required=true,
+     *
      *          @OA\JsonContent(
      *              type="object",
+     *
      *              @OA\Property(property="programme_id", type="integer", example=1),
      *              @OA\Property(property="exercise_id", type="integer", example=2),
      *              @OA\Property(property="name", type="string", example="Exercice 1"),
@@ -32,17 +35,23 @@ class ExerciceApiController extends Controller
      *
      *          )
      *      ),
+     *
      *      @OA\Response(
      *          response=201,
      *          description="Successful exercise submission",
+     *
      *          @OA\JsonContent(
+     *
      *              @OA\Property(property="success", type="boolean", example=true)
      *          )
      *      ),
+     *
      *      @OA\Response(
      *          response=422,
      *          description="Bad request",
+     *
      *          @OA\JsonContent(
+     *
      *              @OA\Property(property="error", type="string", example="Invalid input")
      *          )
      *      )
@@ -59,23 +68,24 @@ class ExerciceApiController extends Controller
                 'user_id' => 'required|integer|exists:users,id',
                 'gps' => 'array',
                 'gps.*.latitude' => 'numeric',
-                'gps.*.longitude' => 'numeric'
+                'gps.*.longitude' => 'numeric',
             ]);
+
             return response()->json([
                 'success' => true,
-                'message' => 'Exercise submitted successfully'
+                'message' => 'Exercise submitted successfully',
             ], 201);
         } catch (\Illuminate\Validation\ValidationException $e) {
 
             return response()->json([
                 'error' => 'Invalid input',
-                'details' => $e->errors()
+                'details' => $e->errors(),
             ], 400);
         } catch (\Exception $e) {
 
             return response()->json([
                 'error' => 'An unexpected error occurred',
-                'message' => $e->getMessage()
+                'message' => $e->getMessage(),
             ], 500);
         }
     }

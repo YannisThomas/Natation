@@ -1,79 +1,105 @@
 <x-guest-layout>
+    <h1 class="auth-title">Inscription</h1>
+    <p class="auth-subtitle">Créez votre compte pour commencer</p>
+
     <form method="POST" action="{{ route('register') }}" enctype="multipart/form-data">
         @csrf
 
-        <!-- Name -->
-        <div>
-            <x-input-label for="firstname" :value="__('Prenom')" />
-            <x-text-input id="firstname" class="block mt-1 w-full" type="text" name="firstname" :value="old('firstname')"
-                required autofocus autocomplete="firstname" />
-            <x-input-error :messages="$errors->get('firstname')" class="mt-2" />
+        <!-- Prénom -->
+        <div class="form-group">
+            <label for="firstname" class="form-label">Prénom</label>
+            <input id="firstname" class="form-control" type="text" name="firstname" value="{{ old('firstname') }}" required autofocus autocomplete="firstname">
+            @error('firstname')
+                <div class="form-error">{{ $message }}</div>
+            @enderror
         </div>
-        <!-- Lastname -->
-        <div>
-            <x-input-label for="lastname" :value="__('Nom de famille')" />
-            <x-text-input id="lastname" class="block mt-1 w-full" type="text" name="lastname" :value="old('lastname')"
-                required autofocus autocomplete="lastname" />
-            <x-input-error :messages="$errors->get('lastname')" class="mt-2" />
+        
+        <!-- Nom -->
+        <div class="form-group">
+            <label for="lastname" class="form-label">Nom</label>
+            <input id="lastname" class="form-control" type="text" name="lastname" value="{{ old('lastname') }}" required autocomplete="lastname">
+            @error('lastname')
+                <div class="form-error">{{ $message }}</div>
+            @enderror
         </div>
 
-        <!-- Role -->
-        <div>
-            <x-input-label for="role_id" :value="__('Role')" />
-            <select id="role_id" name="role_id" class="block mt-1 w-full">
-                @foreach ($roles as $role)
-                    <option value="{{ $role->id }}">{{ $role->name }}</option>
-                @endforeach
-
+        <!-- Rôle -->
+        <div class="form-group">
+            <label for="role_id" class="form-label">Rôle</label>
+            <select id="role_id" name="role_id" class="form-control" required>
+                @if($roles->count() > 0)
+                    @foreach ($roles as $role)
+                        @if($role->name != 'admin') <!-- Ne pas afficher le rôle admin -->
+                            <option value="{{ $role->id }}">
+                                @if($role->name == 'coach')
+                                    Coach
+                                @elseif($role->name == 'sportif')
+                                    Athlète
+                                @else
+                                    {{ ucfirst($role->name) }}
+                                @endif
+                            </option>
+                        @endif
+                    @endforeach
+                @else
+                    <option value="">Aucun rôle disponible</option>
+                @endif
             </select>
-            <x-input-error :messages="$errors->get('role_id')" class="mt-2" />
-
+            @error('role_id')
+                <div class="form-error">{{ $message }}</div>
+            @enderror
+            @if($roles->count() == 0)
+                <div class="form-error">Problème avec les rôles. Contactez l'administrateur.</div>
+            @endif
+            <div class="form-hint">Note: Les athlètes ne peuvent pas s'inscrire directement. Demandez à votre coach de vous ajouter.</div>
         </div>
 
-        <!-- Email Address -->
-        <div class="mt-4">
-            <x-input-label for="email" :value="__('Email')" />
-            <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')"
-                required autocomplete="username" />
-            <x-input-error :messages="$errors->get('email')" class="mt-2" />
+        <!-- Email -->
+        <div class="form-group">
+            <label for="email" class="form-label">Adresse e-mail</label>
+            <input id="email" class="form-control" type="email" name="email" value="{{ old('email') }}" required autocomplete="username">
+            @error('email')
+                <div class="form-error">{{ $message }}</div>
+            @enderror
         </div>
+        
         <!-- Photo -->
-        <div class="mt-4">
-            <x-input-label for="photo" :value="__('Photo')" />
-            <x-text-input id="photo" class="block mt-1 w-full" type="file" name="photo" :value="old('photo')"
-            />
-            <x-input-error :messages="$errors->get('photo')" class="mt-2" />
+        <div class="form-group">
+            <label for="photo" class="form-label">Photo de profil</label>
+            <input id="photo" class="form-control" type="file" name="photo" accept="image/*">
+            <div class="form-hint">Optionnel. Une photo de profil sera générée automatiquement si vous n'en fournissez pas.</div>
+            @error('photo')
+                <div class="form-error">{{ $message }}</div>
+            @enderror
         </div>
 
-        <!-- Password -->
-        <div class="mt-4">
-            <x-input-label for="password" :value="__('Mot de passe')" />
-
-            <x-text-input id="password" class="block mt-1 w-full" type="password" name="password" required
-                autocomplete="new-password" />
-
-            <x-input-error :messages="$errors->get('password')" class="mt-2" />
+        <!-- Mot de passe -->
+        <div class="form-group">
+            <label for="password" class="form-label">Mot de passe</label>
+            <input id="password" class="form-control" type="password" name="password" required autocomplete="new-password">
+            <div class="form-hint">Le mot de passe doit contenir au moins 8 caractères.</div>
+            @error('password')
+                <div class="form-error">{{ $message }}</div>
+            @enderror
         </div>
 
-        <!-- Confirm Password -->
-        <div class="mt-4">
-            <x-input-label for="password_confirmation" :value="__('Confirmer le mot de passe')" />
-
-            <x-text-input id="password_confirmation" class="block mt-1 w-full" type="password"
-                name="password_confirmation" required autocomplete="new-password" />
-
-            <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
+        <!-- Confirmation du mot de passe -->
+        <div class="form-group">
+            <label for="password_confirmation" class="form-label">Confirmation du mot de passe</label>
+            <input id="password_confirmation" class="form-control" type="password" name="password_confirmation" required autocomplete="new-password">
+            @error('password_confirmation')
+                <div class="form-error">{{ $message }}</div>
+            @enderror
         </div>
 
-        <div class="flex items-center justify-end mt-4">
-            <a class="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800"
-                href="{{ route('login') }}">
-                {{ __('Deja inscrit?') }}
-            </a>
-
-            <x-primary-button class="ms-4">
-                {{ __('Inscription') }}
-            </x-primary-button>
+        <div class="form-actions">
+            <button type="submit" class="btn btn-primary">
+                S'inscrire
+            </button>
+        </div>
+        
+        <div class="form-links">
+            <p>Déjà inscrit ? <a href="{{ route('login') }}">Connectez-vous</a></p>
         </div>
     </form>
 </x-guest-layout>

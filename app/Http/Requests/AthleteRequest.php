@@ -2,10 +2,10 @@
 
 namespace App\Http\Requests;
 
+use App\Models\User;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rules;
-use App\Models\User;
 
 class AthleteRequest extends FormRequest
 {
@@ -31,8 +31,8 @@ class AthleteRequest extends FormRequest
             'firstname' => ['required', 'string', 'max:255'],
             'role_id' => ['required', 'integer', 'exists:roles,id'],
             'photo' => ['mimes:jpeg,png,jpg,gif', 'max:2048'],
-            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:' . User::class],
-            'password' => ['required', 'confirmed', Rules\Password::defaults()], 
+            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
+            'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ];
     }
 }

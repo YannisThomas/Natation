@@ -2,10 +2,10 @@
 
 namespace Tests\Unit;
 
-use Tests\TestCase;
 use App\Models\Category;
 use App\Models\Exercise;
 use Illuminate\Database\Eloquent\Collection;
+use Tests\TestCase;
 
 class CategoryTest extends TestCase
 {

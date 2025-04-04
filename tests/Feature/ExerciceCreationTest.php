@@ -2,11 +2,9 @@
 
 namespace Tests\Feature;
 
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
-use Tests\TestCase;
-use App\Models\Exercise;
 use App\Models\Category;
+use App\Models\Exercise;
+use Tests\TestCase;
 
 class ExerciceCreationTest extends TestCase
 {
@@ -30,7 +28,6 @@ class ExerciceCreationTest extends TestCase
             'category_id' => $category->id,
 
         ]);
-
 
         $response->assertStatus(200);
         $response2->assertStatus(302);

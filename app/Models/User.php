@@ -46,4 +46,68 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    /**
+     * Relation avec le rôle de l'utilisateur
+     */
+    public function role()
+    {
+        return $this->belongsTo(Role::class);
+    }
+
+    /**
+     * Programmes attribués à cet utilisateur (quand il est athlète)
+     */
+    public function programs()
+    {
+        return $this->hasMany(Program::class, 'user_id');
+    }
+
+    /**
+     * Programmes créés par cet utilisateur (quand il est coach)
+     */
+    public function createdPrograms()
+    {
+        return $this->hasMany(Program::class, 'coach_id');
+    }
+
+    /**
+     * Récupère les athlètes de ce coach (via les programmes)
+     */
+    public function athletes()
+    {
+        return User::whereIn('id', $this->createdPrograms()->pluck('user_id')->unique());
+    }
+
+    /**
+     * Récupère les coachs de cet athlète (via les programmes)
+     */
+    public function coaches()
+    {
+        return User::whereIn('id', $this->programs()->pluck('coach_id')->unique());
+    }
+
+    /**
+     * Vérifie si l'utilisateur est un admin
+     */
+    public function isAdmin()
+    {
+        return $this->role->name === 'admin';
+    }
+
+    /**
+     * Vérifie si l'utilisateur est un coach
+     */
+    public function isCoach()
+    {
+        return $this->role->name === 'coach' || $this->isAdmin();
+    }
+
+    /**
+     * Vérifie si l'utilisateur est un athlète
+     */
+    public function isAthlete()
+    {
+        return $this->role->name === 'sportif' || $this->isAdmin();
+    }
 }

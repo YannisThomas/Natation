@@ -2,11 +2,7 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Str;
-use App\Models\Program;
 
 class ProgramSeeder extends Seeder
 {
@@ -15,6 +11,7 @@ class ProgramSeeder extends Seeder
      */
     public function run(): void
     {
-        Program::factory(7)->create();
+        // Ne pas créer de programmes aléatoires supplémentaires
+        // Les programmes sont déjà créés dans DatabaseSeeder.php
     }
 }

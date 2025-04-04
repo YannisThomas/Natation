@@ -16,11 +16,25 @@ class RoleFactory extends Factory
      */
     public function definition(): array
     {
-
+        // Par défaut, on utilise sportif comme valeur par défaut
         return [
-
-            'name' => fake()->name,
-
+            'name' => 'sportif',
         ];
+    }
+
+    // Méthode pour créer un rôle admin
+    public function admin(): static
+    {
+        return $this->state(function (array $attributes) {
+            return ['name' => 'admin'];
+        });
+    }
+
+    // Méthode pour créer un rôle coach
+    public function coach(): static
+    {
+        return $this->state(function (array $attributes) {
+            return ['name' => 'coach'];
+        });
     }
 }

@@ -35,15 +35,14 @@ class CreateExercise extends Command
             ]);
 
             with(new TwoColumnDetail($this->getOutput()))->render(
-                '<fg=yellow;options=bold>ACTION : </>' . $exercise->nom,
+                '<fg=yellow;options=bold>ACTION : </>'.$exercise->nom,
                 '<fg=yellow;options=bold>ADDED</>'
             );
         } catch (\Exception $e) {
             echo $e->getMessage();
 
-
             with(new TwoColumnDetail($this->getOutput()))->render(
-                '<fg=yellow;options=bold>ACTION : </>' . "ECHEC",
+                '<fg=yellow;options=bold>ACTION : </>'.'ECHEC',
                 '<fg=red;options=bold>FAILED</>'
             );
         }
