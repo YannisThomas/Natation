@@ -110,7 +110,64 @@ class ProgramController extends Controller
 
         $exercises = $program->exercises;
 
-        return view('program.voirprog', ['exercises' => $exercises, 'programs' => $program]);
+        return view('program.voirprog', ['exercises' => $exercises, 'program' => $program]);
+    }
+
+    /**
+     * Valide un exercice d'un programme (interface web)
+     */
+    public function validateExercise(int $programId, int $exerciseId)
+    {
+        try {
+            $user = auth()->user();
+            $program = Program::findOrFail($programId);
+
+            // Vérifier les permissions : seul l'athlète assigné ou un admin peut valider
+            if (!$user->isAdmin() && $program->user_id !== $user->id) {
+                return response()->json([
+                    'success' => false,
+                    'error' => 'Vous n\'êtes pas autorisé à valider cet exercice',
+                ], 403);
+            }
+
+            // Vérifier que l'exercice fait partie du programme
+            $exerciseInProgram = \Illuminate\Support\Facades\DB::table('exercise_program')
+                ->where('exercise_id', $exerciseId)
+                ->where('program_id', $programId)
+                ->first();
+
+            if (!$exerciseInProgram) {
+                return response()->json([
+                    'success' => false,
+                    'error' => 'Exercice non trouvé dans ce programme',
+                ], 404);
+            }
+
+            // Marquer l'exercice comme terminé
+            \Illuminate\Support\Facades\DB::table('exercise_program')
+                ->where('exercise_id', $exerciseId)
+                ->where('program_id', $programId)
+                ->update([
+                    'finished_at' => now(),
+                    'notes' => 'Exercice validé depuis l\'interface web par ' . $user->firstname . ' ' . $user->lastname,
+                ]);
+
+            return response()->json([
+                'success' => true,
+                'message' => 'Exercice validé avec succès',
+                'finished_at' => now()->format('d/m/Y'),
+                'finished_at_full' => now()->format('d/m/Y à H:i'),
+            ]);
+
+        } catch (\Exception $e) {
+            \Log::error('Erreur validation exercice: ' . $e->getMessage());
+            
+            return response()->json([
+                'success' => false,
+                'error' => 'Une erreur est survenue lors de la validation',
+                'details' => $e->getMessage(),
+            ], 500);
+        }
     }
 
     public function createProgram(ProgramRequest $request)

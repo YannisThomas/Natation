@@ -1,3 +1,4 @@
+# Laravel Framework
 /.phpunit.cache
 /node_modules
 /public/build
@@ -8,6 +9,8 @@
 .env
 .env.backup
 .env.production
+.env.local
+.env.network
 .phpactor.json
 .phpunit.result.cache
 Homestead.json
@@ -15,8 +18,110 @@ Homestead.yaml
 auth.json
 npm-debug.log
 yarn-error.log
+
+# IDEs et Éditeurs
 /.fleet
 /.idea
 /.vscode
 /.zed
+*.swp
+*.swo
+*~
+
+# Base de données
+/database/database.sqlite
+*.db
+*.sqlite
+
+# Logs
+/storage/logs/*.log
+/storage/logs/*
+!/storage/logs/.gitkeep
+
+# Cache Laravel
+/storage/framework/cache/data/*
+!/storage/framework/cache/data/.gitkeep
+/storage/framework/sessions/*
+!/storage/framework/sessions/.gitkeep
+/storage/framework/views/*
+!/storage/framework/views/.gitkeep
+/bootstrap/cache/*
+!/bootstrap/cache/.gitkeep
+
+# Uploads et fichiers temporaires
+/storage/app/public/*
+!/storage/app/public/.gitkeep
+/public/uploads/
+/storage/app/uploads/
+
+# Documentation de couverture de tests
+/documents/phpunit/
+/coverage/
+/docs/coverage/
+
+# Fichiers de configuration serveur et déploiement
+*.conf
+*-vhost.conf
+*-ip.conf
+hebergement_instructions.txt
+reseau_instructions.txt
+production_*.txt
+production_*.conf
+production_setup.txt
+
+# Fichiers de travail et brouillons
 CLAUDE.md
+PROMPT_AQUAFIT.md
+DESIGN_SYSTEM.md
+DOCUMENTATION_TECHNIQUE.md
+annexe*.txt
+corrections_*.txt
+comparaison_*.txt
+test_*.txt
+
+# Fichiers PDF et documents annexes
+*.pdf
+Annexe*.pdf
+
+# Fichiers de modélisation
+*.loo
+*.lo1
+documents/diagramme.loo
+documents/natation1.lo1
+documents/LoopingImage.jpg
+documents/charte_graphique_swimpro_manager.pdf
+
+# Projets et planification
+documents/gestion-projet/
+*.gan
+
+# Fichiers OS
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Fichiers temporaires
+*.tmp
+*.temp
+*.bak
+*.backup
+
+# NPM et dépendances
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+package-lock.json
+
+# Build et distribution
+/dist/
+/build/
+
+# API Documentation générée
+/storage/api-docs/api-docs.json
+
+# Fichiers de configuration locale
+.devdbrc

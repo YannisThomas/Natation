@@ -32,6 +32,31 @@ class DatabaseSeeder extends Seeder
             'role_id' => $adminRole->id,
         ]);
 
+        // Création de 3 profils pour les examinateurs
+        $examinerAdmin = User::factory()->create([
+            'firstname' => 'Examinateur',
+            'lastname' => 'Admin',
+            'email' => 'examiner.admin@test.com',
+            'password' => bcrypt('examiner123'),
+            'role_id' => $adminRole->id,
+        ]);
+
+        $examinerCoach = User::factory()->create([
+            'firstname' => 'Examinateur',
+            'lastname' => 'Coach',
+            'email' => 'examiner.coach@test.com',
+            'password' => bcrypt('examiner123'),
+            'role_id' => $coachRole->id,
+        ]);
+
+        $examinerAthlete = User::factory()->create([
+            'firstname' => 'Examinateur',
+            'lastname' => 'Athlete',
+            'email' => 'examiner.athlete@test.com',
+            'password' => bcrypt('examiner123'),
+            'role_id' => $sportifRole->id,
+        ]);
+
         // 2 coachs
         $coaches = User::factory(2)->create([
             'role_id' => $coachRole->id,
@@ -50,6 +75,50 @@ class DatabaseSeeder extends Seeder
 
         // Récupérer tous les exercices pour les associer aux programmes
         $exercises = \App\Models\Exercise::all();
+
+        // Créer un programme spécifique pour l'examinateur athlète
+        $examinerProgram = \App\Models\Program::factory()->create([
+            'user_id' => $examinerAthlete->id,
+            'coach_id' => $examinerCoach->id,
+            'name' => 'Programme de test pour examinateur',
+            'description' => 'Programme spécialement conçu pour tester toutes les fonctionnalités',
+        ]);
+
+        // Attacher quelques exercices spécifiques avec différents états
+        $examinerExercises = $exercises->take(5);
+        foreach ($examinerExercises as $index => $exercise) {
+            $finishedAt = null;
+            $performanceData = [];
+            
+            // Premier exercice terminé avec données complètes
+            if ($index === 0) {
+                $finishedAt = now()->subDays(2)->format('Y-m-d');
+                $performanceData = [
+                    'duration_completed' => 1800,
+                    'distance_completed' => 2000.50,
+                    'repetitions_completed' => 40,
+                    'weight_used' => 75.5,
+                    'notes' => 'Exercice terminé avec succès par l\'examinateur',
+                    'gps_data' => json_encode([
+                        ['latitude' => 48.856614, 'longitude' => 2.352222, 'timestamp' => now()->subDays(2)->toISOString()],
+                        ['latitude' => 48.857614, 'longitude' => 2.353222, 'timestamp' => now()->subDays(2)->addMinutes(10)->toISOString()]
+                    ])
+                ];
+            }
+            // Deuxième exercice terminé avec données partielles
+            elseif ($index === 1) {
+                $finishedAt = now()->subDays(1)->format('Y-m-d');
+                $performanceData = [
+                    'duration_completed' => 900,
+                    'notes' => 'Exercice terminé rapidement'
+                ];
+            }
+            // Les autres exercices restent non terminés pour les tests
+            
+            $examinerProgram->exercises()->attach($exercise->id, array_merge([
+                'finished_at' => $finishedAt,
+            ], $performanceData));
+        }
 
         // Assigner chaque sportif à un coach aléatoire en créant un programme
         foreach ($athletes as $athlete) {

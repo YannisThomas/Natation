@@ -60,9 +60,6 @@
                                             },
                                             "type": "object"
                                         }
-                                    },
-                                    "data": {
-                                        "type": "object"
                                     }
                                 },
                                 "type": "object"
@@ -87,7 +84,7 @@
                             }
                         }
                     },
-                    "400": {
+                    "422": {
                         "description": "Bad request",
                         "content": {
                             "application/json": {
@@ -109,6 +106,374 @@
                         "api_key_security_example": []
                     }
                 ]
+            }
+        },
+        "/performance/record": {
+            "post": {
+                "tags": [
+                    "Exercises"
+                ],
+                "summary": "Record exercise performance from mobile",
+                "description": "Enregistrer les performances depuis mobile (annexe 9-1-B)",
+                "operationId": "recordPerformance",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "athlete_id": {
+                                        "description": "ID de l'athlète",
+                                        "type": "integer",
+                                        "example": 1
+                                    },
+                                    "exercise_id": {
+                                        "description": "ID de l'exercice",
+                                        "type": "integer",
+                                        "example": 2
+                                    },
+                                    "program_id": {
+                                        "description": "ID du programme",
+                                        "type": "integer",
+                                        "example": 1
+                                    },
+                                    "duration": {
+                                        "description": "Durée réalisée en secondes",
+                                        "type": "integer",
+                                        "example": 1800
+                                    },
+                                    "distance": {
+                                        "description": "Distance parcourue",
+                                        "type": "number",
+                                        "format": "float",
+                                        "example": 2000.5
+                                    },
+                                    "repetitions": {
+                                        "description": "Répétitions effectuées",
+                                        "type": "integer",
+                                        "example": 25
+                                    },
+                                    "weight": {
+                                        "description": "Poids utilisé",
+                                        "type": "number",
+                                        "format": "float",
+                                        "example": 75.5
+                                    },
+                                    "heart_rate": {
+                                        "description": "Fréquence cardiaque moyenne",
+                                        "type": "integer",
+                                        "example": 155
+                                    },
+                                    "calories": {
+                                        "description": "Calories brûlées",
+                                        "type": "integer",
+                                        "example": 320
+                                    },
+                                    "notes": {
+                                        "description": "Notes de l'athlète",
+                                        "type": "string",
+                                        "example": "Exercice hors piscine réalisé"
+                                    },
+                                    "gps_data": {
+                                        "description": "Données GPS pour exercices hors piscine",
+                                        "type": "array",
+                                        "items": {
+                                            "properties": {
+                                                "latitude": {
+                                                    "type": "number",
+                                                    "format": "float",
+                                                    "example": 48.856614
+                                                },
+                                                "longitude": {
+                                                    "type": "number",
+                                                    "format": "float",
+                                                    "example": 2.352222
+                                                },
+                                                "timestamp": {
+                                                    "type": "string",
+                                                    "example": "2024-01-01T12:00:00Z"
+                                                },
+                                                "speed": {
+                                                    "description": "Vitesse en km/h",
+                                                    "type": "number",
+                                                    "format": "float",
+                                                    "example": 12.5
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Performance recorded successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean",
+                                            "example": true
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Performance enregistrée avec succès"
+                                        },
+                                        "data": {
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "Invalid input"
+                                        },
+                                        "details": {
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "api_key_security_example": []
+                    }
+                ]
+            }
+        },
+        "/programme/{programme}/exercice/{exercise}": {
+            "put": {
+                "tags": [
+                    "Exercises"
+                ],
+                "summary": "Validate and mark an exercise as finished",
+                "description": "Endpoint to validate exercise completion with optional performance data",
+                "operationId": "validateExercise",
+                "parameters": [
+                    {
+                        "name": "programme",
+                        "in": "path",
+                        "description": "Program ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "exercise",
+                        "in": "path",
+                        "description": "Exercise ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": false,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "user_id": {
+                                        "description": "ID of the user completing the exercise",
+                                        "type": "integer",
+                                        "example": 1
+                                    },
+                                    "duration_completed": {
+                                        "description": "Actual duration in seconds",
+                                        "type": "integer",
+                                        "example": 300
+                                    },
+                                    "distance_completed": {
+                                        "description": "Actual distance completed",
+                                        "type": "number",
+                                        "format": "float",
+                                        "example": 1500.5
+                                    },
+                                    "repetitions_completed": {
+                                        "description": "Actual repetitions completed",
+                                        "type": "integer",
+                                        "example": 20
+                                    },
+                                    "weight_used": {
+                                        "description": "Weight used during exercise",
+                                        "type": "number",
+                                        "format": "float",
+                                        "example": 75.5
+                                    },
+                                    "notes": {
+                                        "description": "Additional notes",
+                                        "type": "string",
+                                        "example": "Exercise completed successfully"
+                                    },
+                                    "gps_data": {
+                                        "type": "array",
+                                        "items": {
+                                            "properties": {
+                                                "latitude": {
+                                                    "type": "number",
+                                                    "format": "float",
+                                                    "example": 48.856614
+                                                },
+                                                "longitude": {
+                                                    "type": "number",
+                                                    "format": "float",
+                                                    "example": 2.352222
+                                                },
+                                                "timestamp": {
+                                                    "type": "string",
+                                                    "example": "2024-01-01T12:00:00Z"
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Exercise marked as finished successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean",
+                                            "example": true
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Exercise completed successfully"
+                                        },
+                                        "data": {
+                                            "properties": {
+                                                "program_id": {
+                                                    "type": "integer",
+                                                    "example": 1
+                                                },
+                                                "exercise_id": {
+                                                    "type": "integer",
+                                                    "example": 2
+                                                },
+                                                "finished_at": {
+                                                    "type": "string",
+                                                    "example": "2024-01-01T12:00:00Z"
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Program or exercise not found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "Exercise not found in this program"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "Invalid input"
+                                        },
+                                        "details": {
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "api_key_security_example": []
+                    }
+                ]
+            }
+        },
+        "/athlete/{id}/programmes": {
+            "get": {
+                "tags": [
+                    "Athletes"
+                ],
+                "summary": "Get athlete programs for mobile interface",
+                "description": "Récupère les programmes d'un athlète pour interface mobile (annexe 9-1-B)",
+                "operationId": "getAthletePrograms",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Athlete ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Athlete programs retrieved successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "programs": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "object"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
             }
         }
     },
@@ -146,6 +511,10 @@
         {
             "name": "Exercises",
             "description": "Exercises"
+        },
+        {
+            "name": "Athletes",
+            "description": "Athletes"
         }
     ]
 }

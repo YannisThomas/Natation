@@ -59,4 +59,85 @@ class UserApiController extends Controller
             ->header('Access-Control-Allow-Methods', 'GET');
         }
     }
+
+    /**
+     * @OA\Get(
+     *      path="/athlete/{id}/programmes",
+     *      operationId="getAthletePrograms",
+     *      tags={"Athletes"},
+     *      summary="Get athlete programs for mobile interface",
+     *      description="Récupère les programmes d'un athlète pour interface mobile (annexe 9-1-B)",
+     *      @OA\Parameter(
+     *          name="id",
+     *          in="path",
+     *          description="Athlete ID",
+     *          required=true,
+     *          @OA\Schema(type="integer")
+     *      ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="Athlete programs retrieved successfully",
+     *          @OA\JsonContent(
+     *              @OA\Property(property="programs", type="array", @OA\Items(type="object"))
+     *          )
+     *      )
+     * )
+     */
+    public function getAthletePrograms($id): JsonResponse
+    {
+        try {
+            $athlete = User::with(['programs.exercises.category', 'role'])->findOrFail($id);
+
+            if (!$athlete->role || $athlete->role->name !== 'sportif') {
+                return response()->json([
+                    'error' => 'User is not an athlete',
+                ], 400);
+            }
+
+            $programs = $athlete->programs->map(function ($program) {
+                $totalExercises = $program->exercises->count();
+                $completedExercises = $program->exercises->where('pivot.finished_at', '!=', null)->count();
+                
+                return [
+                    'id' => $program->id,
+                    'name' => $program->name,
+                    'description' => $program->description,
+                    'start_date' => $program->start_date,
+                    'end_date' => $program->end_date,
+                    'progress' => $totalExercises > 0 ? round(($completedExercises / $totalExercises) * 100) : 0,
+                    'total_exercises' => $totalExercises,
+                    'completed_exercises' => $completedExercises,
+                    'exercises' => $program->exercises->map(function ($exercise) {
+                        return [
+                            'id' => $exercise->id,
+                            'name' => $exercise->name,
+                            'description' => $exercise->description,
+                            'duration' => $exercise->duration,
+                            'distance' => $exercise->distance,
+                            'repetition' => $exercise->repetition,
+                            'category' => $exercise->category->name ?? 'Non catégorisé',
+                            'is_completed' => $exercise->pivot->finished_at !== null,
+                            'finished_at' => $exercise->pivot->finished_at,
+                            'is_outdoor' => $exercise->category->name === 'Hors Piscine',
+                        ];
+                    }),
+                ];
+            });
+
+            return response()->json([
+                'athlete_id' => $id,
+                'athlete_name' => $athlete->firstname . ' ' . $athlete->lastname,
+                'programs' => $programs,
+            ])
+            ->header('Access-Control-Allow-Origin', '*')
+            ->header('Access-Control-Allow-Methods', 'GET');
+        } catch (\Exception $e) {
+            return response()->json([
+                'error' => 'Athlete not found',
+                'message' => $e->getMessage(),
+            ], 404)
+            ->header('Access-Control-Allow-Origin', '*')
+            ->header('Access-Control-Allow-Methods', 'GET');
+        }
+    }
 }

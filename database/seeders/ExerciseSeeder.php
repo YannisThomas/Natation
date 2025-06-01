@@ -14,6 +14,7 @@ class ExerciseSeeder extends Seeder
     public function run(): void
     {
         // Créer des exercices prédéfinis de natation avec des noms réalistes
+        // Exercices adaptés pour l'entraînement hors piscine selon l'annexe 9-1-B
         $exercisesData = [
             // Exercices de type Crawl
             ['name' => 'Crawl 100m', 'distance' => 100, 'duration' => 5, 'description' => 'Nage crawl sur 100 mètres à vitesse modérée.', 'type' => 'Crawl'],
@@ -46,11 +47,34 @@ class ExerciseSeeder extends Seeder
             ['name' => '4 x 50m', 'distance' => 200, 'duration' => 10, 'description' => '4 répétitions de 50 mètres avec 15 secondes de récupération.', 'type' => 'Endurance'],
             ['name' => '8 x 25m', 'distance' => 200, 'duration' => 12, 'description' => '8 répétitions de 25 mètres avec 10 secondes de récupération.', 'type' => 'Endurance'],
             ['name' => 'Pyramide 50-100-150-100-50', 'distance' => 450, 'duration' => 25, 'description' => 'Série en pyramide pour travailler l\'endurance.', 'type' => 'Endurance'],
+
+            // EXERCICES HORS PISCINE - Conformément à l'annexe 9-1-B
+            // "exercices pouvant être pratiqués hors des bassins"
+            
+            // Préparation physique terre
+            ['name' => 'Course à pied 30 min', 'duration' => 30, 'description' => 'Course d\'endurance pour développer la capacité cardio-vasculaire. Alternative hors piscine.', 'type' => 'Hors Piscine'],
+            ['name' => 'Vélo d\'appartement', 'duration' => 25, 'description' => 'Entraînement cardio sur vélo stationnaire, travail des jambes.', 'type' => 'Hors Piscine'],
+            ['name' => 'Rameur 20 min', 'duration' => 20, 'description' => 'Simulation du mouvement de nage sur rameur, excellent pour la technique.', 'type' => 'Hors Piscine'],
+            
+            // Renforcement musculaire sec
+            ['name' => 'Pompes spécial nageur', 'repetition' => 20, 'duration' => 5, 'description' => 'Pompes avec variation pour renforcer les muscles utilisés en natation.', 'type' => 'Hors Piscine'],
+            ['name' => 'Squats aquatiques', 'repetition' => 25, 'duration' => 8, 'description' => 'Squats pour renforcer les jambes, mouvement adapté aux nageurs.', 'type' => 'Hors Piscine'],
+            ['name' => 'Gainage planche', 'duration' => 2, 'repetition' => 5, 'description' => 'Planche pour renforcer le core, essentiel pour la position en natation.', 'type' => 'Hors Piscine'],
+            ['name' => 'Élastiques bras', 'repetition' => 15, 'duration' => 10, 'description' => 'Exercices avec élastiques pour simuler les mouvements de nage.', 'type' => 'Hors Piscine'],
+            
+            // Mobilité et technique
+            ['name' => 'Étirements nageur', 'duration' => 15, 'description' => 'Séance d\'étirements spécifiques pour les nageurs, améliore la souplesse.', 'type' => 'Hors Piscine'],
+            ['name' => 'Yoga aquatique', 'duration' => 30, 'description' => 'Postures de yoga adaptées pour améliorer la flexibilité et la respiration.', 'type' => 'Hors Piscine'],
+            ['name' => 'Exercices respiratoires', 'repetition' => 10, 'duration' => 8, 'description' => 'Travail de la respiration et de l\'apnée, technique fondamentale.', 'type' => 'Hors Piscine'],
+            
+            // Préparation mentale
+            ['name' => 'Visualisation technique', 'duration' => 10, 'description' => 'Exercice de visualisation des mouvements de nage, préparation mentale.', 'type' => 'Hors Piscine'],
+            ['name' => 'Méditation sportive', 'duration' => 15, 'description' => 'Méditation pour améliorer la concentration et gérer le stress de compétition.', 'type' => 'Hors Piscine'],
         ];
 
         // Créer des catégories pertinentes pour la natation si elles n'existent pas déjà
         $categories = [
-            'Crawl', 'Brasse', 'Dos', 'Papillon', 'Renforcement', 'Endurance',
+            'Crawl', 'Brasse', 'Dos', 'Papillon', 'Renforcement', 'Endurance', 'Hors Piscine',
         ];
 
         $categoryIds = [];

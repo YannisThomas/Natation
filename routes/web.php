@@ -64,6 +64,9 @@ Route::prefix('programme')->middleware('auth')->group(function () {
     // Visualisation de programmes accessible à tous les utilisateurs authentifiés
     Route::get('/voir', [ProgramController::class, 'showPrograms'])->name('program.list');
     Route::get('/voir/{id}', [ProgramController::class, 'showExercise'])->name('program.show');
+    
+    // Route pour validation d'exercices via interface web
+    Route::post('/valider/{programId}/exercice/{exerciseId}', [ProgramController::class, 'validateExercise'])->name('program.exercise.validate');
 
     // Routes pour les coachs (et admins)
     Route::middleware('coach')->group(function () {

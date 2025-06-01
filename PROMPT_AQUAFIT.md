@@ -52,6 +52,7 @@ Voici les pages qu'il reste à moderniser:
 
 ## Instructions d'implémentation
 
+
 1. Utilisez le fichier `aquafit.css` comme base
 2. Adaptez chaque page en utilisant les classes et variables CSS définies
 3. Assurez-vous que toutes les pages sont responsives
