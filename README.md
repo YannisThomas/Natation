@@ -2,6 +2,8 @@
 
 > **NOTE POUR LES EXAMINATEURS :** Les différents mots de passe pour tester les fonctions des différents utilisateurs sont disponibles dans la documentation ci-dessous.
 
+> **🌐 IP DISTANTE : aquafit.aftres.fr**
+
 > **⚠️ IMPORTANT : Le mot de passe de la session Ubuntu est : `btssio2025`**
 
 ## 📋 Table des Matières
@@ -363,6 +365,8 @@ php artisan test --coverage-html documents/phpunit
 - **API** : Validation exercices, enregistrement performances
 
 ## 🌐 Déploiement
+
+**IP distante :** aquafit.aftres.fr
 
 ### Configuration Apache
 
