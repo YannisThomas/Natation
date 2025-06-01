@@ -1,3 +1,5 @@
+# NOTE POUR LES EXAMINATEURS : Mot de passe de la session ubuntu : btssio2025
+les différents mots de passes pour tester les fonctions des différents utilisateurs sont situés dans le document texte sur le bureau
 # Projet Natation-3
 
 ## Description
