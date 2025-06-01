@@ -1,5 +1,7 @@
 # Aquafit - Système de Gestion d'Entraînements de Natation
 
+> **NOTE POUR LES EXAMINATEURS :** Les différents mots de passe pour tester les fonctions des différents utilisateurs sont disponibles dans la documentation ci-dessous.
+
 > **⚠️ IMPORTANT : Le mot de passe de la session Ubuntu est : `btssio2025`**
 
 ## 📋 Table des Matières
